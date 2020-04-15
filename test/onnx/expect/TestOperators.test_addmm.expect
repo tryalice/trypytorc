@@ -1,0 +1,142 @@
+ir_version: 3
+producer_name: "pytorch"
+producer_version: "0.4"
+graph {
+  node {
+    output: "3"
+    op_type: "Constant"
+    attribute {
+      name: "value"
+      t {
+        dims: 1
+        data_type: FLOAT
+        raw_data: "\000\000\000\000"
+      }
+      type: TENSOR
+    }
+  }
+  node {
+    input: "0"
+    input: "1"
+    input: "3"
+    output: "4"
+    op_type: "Gemm"
+    attribute {
+      name: "alpha"
+      f: 1
+      type: FLOAT
+    }
+    attribute {
+      name: "beta"
+      f: 0
+      type: FLOAT
+    }
+  }
+  node {
+    input: "2"
+    input: "4"
+    output: "5"
+    op_type: "Add"
+  }
+  node {
+    output: "6"
+    op_type: "Constant"
+    attribute {
+      name: "value"
+      t {
+        dims: 1
+        data_type: FLOAT
+        raw_data: "\000\000\000\000"
+      }
+      type: TENSOR
+    }
+  }
+  node {
+    input: "0"
+    input: "1"
+    input: "6"
+    output: "7"
+    op_type: "Gemm"
+    attribute {
+      name: "alpha"
+      f: 1
+      type: FLOAT
+    }
+    attribute {
+      name: "beta"
+      f: 0
+      type: FLOAT
+    }
+  }
+  node {
+    input: "5"
+    input: "7"
+    output: "8"
+    op_type: "Add"
+  }
+  name: "torch-jit-export"
+  input {
+    name: "0"
+    type {
+      tensor_type {
+        elem_type: FLOAT
+        shape {
+          dim {
+            dim_value: 2
+          }
+          dim {
+            dim_value: 3
+          }
+        }
+      }
+    }
+  }
+  input {
+    name: "1"
+    type {
+      tensor_type {
+        elem_type: FLOAT
+        shape {
+          dim {
+            dim_value: 3
+          }
+          dim {
+            dim_value: 4
+          }
+        }
+      }
+    }
+  }
+  input {
+    name: "2"
+    type {
+      tensor_type {
+        elem_type: FLOAT
+        shape {
+          dim {
+            dim_value: 4
+          }
+        }
+      }
+    }
+  }
+  output {
+    name: "8"
+    type {
+      tensor_type {
+        elem_type: FLOAT
+        shape {
+          dim {
+            dim_value: 2
+          }
+          dim {
+            dim_value: 4
+          }
+        }
+      }
+    }
+  }
+}
+opset_import {
+  version: 9
+}
