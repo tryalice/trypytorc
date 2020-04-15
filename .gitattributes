@@ -1,0 +1,2 @@
+# BASH scripts shouldn't be converted since they may need to be used by Docker
+*.sh text eol=lf
